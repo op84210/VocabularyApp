@@ -94,6 +94,7 @@ namespace VocabularyApp.Controllers
 
                 await transaction.CommitAsync();
 
+                // 提交事務
                 return Ok(new
                 {
                     success = true,
