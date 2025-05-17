@@ -98,7 +98,7 @@ namespace VocabularyApp.Controllers
                 return Ok(new
                 {
                     success = true,
-                    message = "單字新增成",
+                    message = "單字新增成功",
                     data = new VocabularyDto
                     {
                         Id = vocabulary.Id,
@@ -115,7 +115,7 @@ namespace VocabularyApp.Controllers
                 return StatusCode(500, new
                 {
                     success = false,
-                    message = "伺服器錯誤，請稍後再試",
+                    message = "新增單字時發生錯誤",
                     errorCode = 5000,
                     detail = ex.Message
                 });
@@ -130,7 +130,7 @@ namespace VocabularyApp.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<ActionResult<VocabularyDto>> UpdateVocabulary(VocabularyDto dto)
+        public async Task<IActionResult> UpdateVocabulary(VocabularyDto dto)
         {
             try
             {
@@ -150,21 +150,20 @@ namespace VocabularyApp.Controllers
 
                 return Ok(new
                 {
+                    success = true,
                     message = $"已更新 Id {dto.Id} 的單字。",
-                    vocabulary = new
-                    {
-                        vocabulary.Id,
-                        vocabulary.Kana,
-                        vocabulary.Kanji,
-                        vocabulary.Translation,
-                        vocabulary.Importance,
-                        vocabulary.CreatedAt
-                    }
+                    data = dto
                 });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "更新時發生錯誤", error = ex.Message });
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "更新時發生錯誤",
+                    errorCode = 5002,
+                    detail = ex.Message
+                });
             }
         }
 
@@ -195,12 +194,23 @@ namespace VocabularyApp.Controllers
 
                 await transaction.CommitAsync();
 
-                return Ok(new { message = $"已刪除 Id {id} 的單字。" });
+                return Ok(new
+                {
+                    success = true,
+                    message = $"已刪除 Id {id} 的單字。"
+                });
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                return StatusCode(500, new { message = "刪除時發生錯誤", error = ex.Message });
+
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "刪除時發生錯誤",
+                    errorCode = 5001,
+                    detail = ex.Message
+                });
             }
         }
 

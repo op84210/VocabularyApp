@@ -155,3 +155,4 @@ D:\dotnetProjects\VocabularyApp\obj\Debug\net9.0\ref\VocabularyApp.dll
 D:\dotnetProjects\VocabularyApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\dotnetProjects\VocabularyApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\dotnetProjects\VocabularyApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\dotnetProjects\VocabularyApp\obj\Debug\net9.0\VocabularyApp.sourcelink.json
