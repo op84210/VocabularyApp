@@ -16,6 +16,12 @@ namespace VocabularyApp.Controllers
             _context = context;
         }
 
+        [HttpGet("hello")]
+        public async Task<ActionResult<string>> Hello()
+        {
+            return "Hello, World!";
+        }
+  
         [HttpGet("load")]
         public async Task<ActionResult<IEnumerable<VocabularyDto>>> LoadVocabularies()
         {
